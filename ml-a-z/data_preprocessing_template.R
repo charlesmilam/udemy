@@ -1,4 +1,5 @@
 # Data Preprocessing
+library(caTools)
 
 # import the dataset
 dataset = read.csv('Data.csv')
@@ -18,3 +19,9 @@ dataset$Purchased = factor(dataset$Purchased,
                            levels = c('No', 'Yes'),
                            labels = c(0, 1)
                            )
+
+# split dataset into train and test sets
+set.seed(123)
+split = sample.split(dataset$Purchased, SplitRatio = 0.8)
+training_set = subset(dataset, split == TRUE)
+test_set = subset(dataset, split == FALSE)
