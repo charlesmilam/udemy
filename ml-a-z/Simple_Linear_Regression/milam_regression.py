@@ -2,6 +2,7 @@
 # Importing the libraries
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 import pandas as pd
 %matplotlib inline
 
@@ -43,3 +44,10 @@ score
 
 # %%
 # visualize the training set results
+plt.scatter(X_train, y_train, color = 'red')
+plt.scatter(X_test, y_test, color = 'green')
+plt.plot(X_train, regressor.predict(X_train), color = 'blue')
+plt.title('Salary vs Experience')
+plt.xlabel('Years of Experience')
+plt.ylabel('Salary')
+plt.show()
