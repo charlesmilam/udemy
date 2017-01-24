@@ -3,6 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+%matplotlib inline
 
 # %%
 # Importing the dataset
@@ -28,7 +29,17 @@ y_test
 # %%
 # fit the simple linear regression to training set
 from sklearn.linear_model import LinearRegression
-regressor = LinearRegression()
-regressor.fit(X_train, y_train)
-regressor.coef_
-regressor.intercept_
+regr = LinearRegression()
+regr.fit(X_train, y_train)
+regr.coef_
+regr.intercept_
+
+# %%
+# predicit test set results
+y_pred = regr.predict(X_test)
+y_test, y_pred
+score = regr.score(X_test, y_test)
+score
+
+# %%
+# visualize the training set results
