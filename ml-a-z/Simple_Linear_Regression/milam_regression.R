@@ -18,3 +18,16 @@ regr = lm(formula = Salary ~ YearsExperience,
 # predict the test set
 y_pred = predict(regr, newdata = test_set)
 
+# visualize the training set results
+# install.packages('ggplot2')
+library(ggplot2)
+ggplot() +
+  geom_point(aes(x = training_set$YearsExperience, y = training_set$Salary),
+             color = 'red') +
+  geom_point(aes(x = test_set$YearsExperience, y = test_set$Salary),
+             color = 'green') +
+  geom_line(aes(x = training_set$YearsExperience, y = predict(regr, newdata = training_set)),
+            color = 'blue') +
+  ggtitle('Salary vs Experience') +
+  xlab('Year of Expeience') +
+  ylab('Salary')
