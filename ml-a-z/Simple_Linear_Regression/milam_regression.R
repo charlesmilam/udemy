@@ -11,4 +11,7 @@ split = sample.split(dataset$Salary, SplitRatio = 0.67)
 training_set = subset(dataset, split == TRUE)
 test_set = subset(dataset, split == FALSE)
 
+# fit simple linear regression to trainging set
+regr = lm(formula = Salary ~ YearsExperience, 
+          data = training_set)
 
