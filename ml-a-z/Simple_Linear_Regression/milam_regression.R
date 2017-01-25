@@ -15,3 +15,6 @@ test_set = subset(dataset, split == FALSE)
 regr = lm(formula = Salary ~ YearsExperience, 
           data = training_set)
 
+# predict the test set
+y_pred = predict(regr, newdata = test_set)
+
