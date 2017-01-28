@@ -33,3 +33,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, rando
 # fit multiple linear regression to training set
 regr = LinearRegression()
 regr.fit(X_train, y_train)
+
+# %%
+# predict test set results
+pred = regr.predict(X_test)
+score = regr.score(X_test, y_test)
