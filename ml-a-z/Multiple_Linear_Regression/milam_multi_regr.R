@@ -16,3 +16,7 @@ split = sample.split(dataset$Profit, SplitRatio = 0.8)
 training_set = subset(dataset, split == TRUE)
 test_set = subset(dataset, split == FALSE)
 
+# fit multiple linear regression to training set
+regr = lm(formula = Profit ~ ., 
+          data = training_set)
+summary(regr)
