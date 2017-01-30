@@ -20,3 +20,6 @@ test_set = subset(dataset, split == FALSE)
 regr = lm(formula = Profit ~ ., 
           data = training_set)
 summary(regr)
+
+# predict the test set results
+pred = predict(regr, newdata = test_set)
