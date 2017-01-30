@@ -23,3 +23,20 @@ summary(regr)
 
 # predict the test set results
 pred = predict(regr, newdata = test_set)
+
+# build optimal model using backward elimination
+regr = lm(formula = Profit ~ R.D.Spend + Administration + Marketing.Spend + State, 
+          data = dataset)
+summary(regr)
+
+regr = lm(formula = Profit ~ R.D.Spend + Administration + Marketing.Spend, 
+          data = dataset)
+summary(regr)
+
+regr = lm(formula = Profit ~ R.D.Spend + Marketing.Spend, 
+          data = dataset)
+summary(regr)
+
+regr = lm(formula = Profit ~ R.D.Spend, 
+          data = dataset)
+summary(regr)
