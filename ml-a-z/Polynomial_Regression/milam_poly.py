@@ -51,3 +51,8 @@ plt.title('Truth vs Bluff')
 plt.xlabel('Position Level')
 plt.ylabel('Salary')
 plt.show()
+
+# %%
+# predict new result with linear regression and polynomial regression
+linear_regr.predict(6.5)
+linear_regr2.predict(poly_regr.fit_transform(6.5))
