@@ -16,3 +16,11 @@ dataset = dataset[2:3]
 # training_set = scale(training_set)
 # test_set = scale(test_set)
 
+# fit linear regression to dataset
+lin_regr = lm(formula = Salary ~ ., data = dataset)
+
+
+# fit polynomial regression to dataset
+dataset$Level2 = dataset$Level ^ 2
+dataset$Level3 = dataset$Level ^ 3
+poly_regr = lm(formula = Salary ~ ., data = dataset)
