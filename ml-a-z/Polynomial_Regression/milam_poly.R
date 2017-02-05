@@ -23,4 +23,16 @@ lin_regr = lm(formula = Salary ~ ., data = dataset)
 # fit polynomial regression to dataset
 dataset$Level2 = dataset$Level ^ 2
 dataset$Level3 = dataset$Level ^ 3
+dataset$Level4 = dataset$Level ^ 4
 poly_regr = lm(formula = Salary ~ ., data = dataset)
+
+# visualize the results
+library(ggplot2)
+ggplot() +
+  geom_point(aes(x = dataset$Level, y = dataset$Salary), 
+             color = 'red') +
+  geom_line(aes(x = dataset$Level, y = predict(lin_regr, newdata = dataset)), color = 'blue') +
+  geom_line(aes(x = dataset$Level, y = predict(poly_regr, newdata = dataset)), color = 'steelblue') +
+  ggtitle('Truth or Bluff') +
+  xlab('Level') +
+  ylab('Salary')
