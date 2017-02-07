@@ -1,4 +1,4 @@
-# Polynomial Regression
+# regression model template
 # %%
 # import the libraries
 import numpy as np
@@ -26,39 +26,39 @@ X = dataset.iloc[:, 1:-1].values
 y = dataset.iloc[:, -1].values
 
 # %%
-# fit linear regression to the dataset
-linear_regr = LinearRegression()
-linear_regr.fit(X, y)
+# take care of missing data
+imputer = Imputer('NaN')
+imputer = imputer.fit(X[:, 1:3])
+X[:, 1:3] = imputer.transform(X[:, 1:3])
 
 # %%
-# fit polynomial regression to the dataset
-poly_regr = PolynomialFeatures(4)
-X_poly = poly_regr.fit_transform(X)
+# encode categorical data
+labeler_X = LabelEncoder()
+X[:, 0] = labeler_X.fit_transform(X[:, 0])
+hotlabler = OneHotEncoder(categorical_features = [0])
+X = hotlabler.fit_transform(X).toarray()
+labeler_y = LabelEncoder()
+y = labeler_X.fit_transform(y)
 
 # %%
-# fit X_poly to new linear regression
-linear_regr2 = LinearRegression()
-linear_regr2.fit(X_poly, y)
+# splitting the dataset into a training and test set
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+
+# %%
+# fit the regression to the dataset
+
+
+# %%
+# predict results
+pred = regr.predict(6.5)
 
 # %%
 # visualize the results
 X_grid = np.arange(min(X), max(X), 0.1)
 X_grid = X_grid.reshape((len(X_grid), 1))
 plt.scatter(X, y, color = 'red')
-plt.plot(X, linear_regr.predict(X), color = 'blue')
-plt.plot(X_grid, linear_regr2.predict(poly_regr.fit_transform(X_grid)), color = 'steelblue')
+plt.plot(X_grid, regr.predict(X_grid), color = 'steelblue')
 plt.title('Truth vs Bluff')
 plt.xlabel('Position Level')
 plt.ylabel('Salary')
 plt.show()
-
-# %%
-# predict new result with linear regression and polynomial regression
-linear_regr.predict(6.5)
-linear_regr2.predict(poly_regr.fit_transform(6.5))
-
-# %%
-# summary info of new regressions
-summary = dataset.describe()
-summary = summary.transpose()
-summary
