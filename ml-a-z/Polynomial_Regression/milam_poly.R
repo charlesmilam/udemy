@@ -36,3 +36,10 @@ ggplot() +
   ggtitle('Truth or Bluff') +
   xlab('Level') +
   ylab('Salary')
+
+# predict a new single result
+new_pred = predict(lin_regr, data.frame(Level = 6.5))
+new_poly_pred = predict(poly_regr, data.frame(Level = 6.5, 
+                                              Level2 = 6.5^2, 
+                                              Level3 = 6.5^3, 
+                                              Level4 = 6.5^4))

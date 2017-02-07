@@ -56,3 +56,9 @@ plt.show()
 # predict new result with linear regression and polynomial regression
 linear_regr.predict(6.5)
 linear_regr2.predict(poly_regr.fit_transform(6.5))
+
+# %%
+# summary info of new regressions
+summary = dataset.describe()
+summary = summary.transpose()
+summary
