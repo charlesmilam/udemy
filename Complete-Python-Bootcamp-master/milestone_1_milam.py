@@ -14,3 +14,11 @@ def print_board(board):
         print row[0]+' '+row[1]+' '+row[2]
 
 print_board(board)
+
+#%%
+# get player input
+def get_input():
+    print 'Enter an X,Y coordinate "(X,Y)"":'
+    return raw_input()
+
+print 'your input:', get_input()
