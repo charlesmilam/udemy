@@ -47,9 +47,11 @@ def place_marker(pos, player_one):
 def check_state():
     print 'check board:'
     print_board()
+    # check tie
     if all(p in ('X', 'O') for p in board):
         print "It's a tie! gg"
         return True
+    # check horizontal win
     elif all(p == 'X' for p in board[0]):
         print 'X wins!'
         return True
@@ -68,6 +70,18 @@ def check_state():
     elif all(p == 'O' for p in board[2]):
         print 'O wins!'
         return True
+    # check vertical win
+    elif all(p == 'X' for p in get_col(0)):
+        print 'X wins!'
+        return True
+
+#%%
+# get a column from the board
+def get_col(col_num):
+    print 'get col:', [board[x][col_num] for x in xrange(3)]
+    return [board[x][col_num] for x in xrange(3)]
+
+get_col(0)
 
 #%%
 # trial run
