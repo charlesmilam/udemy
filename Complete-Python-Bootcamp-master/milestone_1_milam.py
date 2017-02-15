@@ -45,7 +45,9 @@ def place_marker(pos, player_one):
 #%%
 # check the game state
 def check_state():
-    if all(p != '-' for p in board):
+    print 'check board:'
+    print_board()
+    if all(p in ('X', 'O') for p in board):
         print "It's a tie! gg"
         return True
     elif all(p == 'X' for p in board[0]):
