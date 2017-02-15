@@ -45,8 +45,8 @@ def place_marker(pos, player_one):
 #%%
 # check the game state
 def check_state():
-    print 'check board:'
-    print_board()
+    # print 'check board:'
+    # print_board()
     # check tie
     if all(p in ('X', 'O') for p in board):
         print "It's a tie! gg"
@@ -74,14 +74,29 @@ def check_state():
     elif all(p == 'X' for p in get_col(0)):
         print 'X wins!'
         return True
+    elif all(p == 'X' for p in get_col(1)):
+        print 'X wins!'
+        return True
+    elif all(p == 'X' for p in get_col(2)):
+        print 'X wins!'
+        return True
+    elif all(p == 'O' for p in get_col(0)):
+        print 'O wins!'
+        return True
+    elif all(p == 'O' for p in get_col(1)):
+        print 'O wins!'
+        return True
+    elif all(p == 'O' for p in get_col(2)):
+        print 'O wins!'
+        return True
 
 #%%
 # get a column from the board
 def get_col(col_num):
-    print 'get col:', [board[x][col_num] for x in xrange(3)]
+    # print 'get col:', [board[x][col_num] for x in xrange(3)]
     return [board[x][col_num] for x in xrange(3)]
 
-get_col(0)
+# get_col(0)
 
 #%%
 # trial run
@@ -90,9 +105,10 @@ while not game_over:
     place_marker(get_input(), is_player_one)
     print_board()
     if is_player_one:
+        print "Player One's turn"
         is_player_one = False
     else:
+        print "Player Two's turn"
         is_player_one = True
 
     game_over = check_state()
-    is_player_one
