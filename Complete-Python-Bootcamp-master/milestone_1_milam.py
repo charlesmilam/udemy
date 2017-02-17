@@ -14,6 +14,7 @@ board = [['-']*3 for x in xrange(3)]
 #%%
 # print the board
 def print_board():
+    print
     for row in board:
         # print 'board index:', idx
         print row[0]+' '+row[1]+' '+row[2]
@@ -45,62 +46,63 @@ def place_marker(pos, player_one):
 #%%
 # check the game state
 def check_state():
-    # print 'check board:'
-    # print_board()
+    tie_msg = "It's a tie! gg"
+    x_wins_msg = 'Player One - X wins!'
+    o_wins_msg = 'Player Twoo - O wins!'
     # check tie
     if all('-' not in p for p in board):
-        print "It's a tie! gg"
+        print tie_msg
         return True
     # check horizontal win
     elif all(p == 'X' for p in board[0]):
-        print 'X wins!'
+        print x_wins_msg
         return True
     elif all(p == 'X' for p in board[1]):
-        print 'X wins!'
+        print x_wins_msg
         return True
     elif all(p == 'X' for p in board[2]):
-        print 'X wins!'
+        print x_wins_msg
         return True
     elif all(p == 'O' for p in board[0]):
-        print 'O wins!'
+        print o_wins_msg
         return True
     elif all(p == 'O' for p in board[1]):
-        print 'O wins!'
+        print o_wins_msg
         return True
     elif all(p == 'O' for p in board[2]):
-        print 'O wins!'
+        print o_wins_msg
         return True
     # check vertical win
     elif all(p == 'X' for p in get_col(0)):
-        print 'X wins!'
+        print x_wins_msg
         return True
     elif all(p == 'X' for p in get_col(1)):
-        print 'X wins!'
+        print x_wins_msg
         return True
     elif all(p == 'X' for p in get_col(2)):
-        print 'X wins!'
+        print x_wins_msg
         return True
     elif all(p == 'O' for p in get_col(0)):
-        print 'O wins!'
+        print o_wins_msg
         return True
     elif all(p == 'O' for p in get_col(1)):
-        print 'O wins!'
+        print o_wins_msg
         return True
     elif all(p == 'O' for p in get_col(2)):
-        print 'O wins!'
+        print o_wins_msg
         return True
     # diagonal check
     elif all(p == 'X' for p in get_diag()[0]):
-        print 'X wins!'
+        print x_wins_msg
         return True
     elif all(p == 'X' for p in get_diag()[1]):
-        print 'X wins!'
+        print x_wins_msg
         return True
     elif all(p == 'O' for p in get_diag()[0]):
-        print 'O wins!'
+        print o_wins_msg
         return True
     elif all(p == 'O' for p in get_diag()[1]):
-        print 'O wins!'
+        print o_wins_msg
         return True
 
 
