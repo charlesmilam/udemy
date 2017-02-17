@@ -2,11 +2,12 @@
 # Python A-Z Milestone Project 1
 # Tic - Tac - Toe
 
-#%%
-# the board
-board = [['-']*3 for x in xrange(3)]
-# board
 
+
+#%%
+# get a new board
+def get_new_board():
+    return [['-']*3 for x in xrange(3)]
 
 
 
@@ -47,8 +48,8 @@ def place_marker(pos, player_one):
 # check the game state
 def check_state():
     tie_msg = "It's a tie! gg"
-    x_wins_msg = 'Player One - X wins!'
-    o_wins_msg = 'Player Twoo - O wins!'
+    x_wins_msg = 'X wins!'
+    o_wins_msg = 'O wins!'
     # check tie
     if all('-' not in p for p in board):
         print tie_msg
@@ -132,14 +133,25 @@ def play_game():
         place_marker(get_marker_pos(), is_player_one)
         print_board()
         if is_player_one:
-            print "Player Two's (O) turn"
+            print "O's turn"
             is_player_one = False
         else:
-            print "Player One's (X) turn"
+            print "X's turn"
             is_player_one = True
 
         game_over = check_state()
 
 #%%
-# start game
-play_game()
+# play game
+board = get_new_board()
+play_again = True
+while play_again:
+    play_game()
+    print 'Play again? (y/n)'
+    choice = raw_input()
+    if choice == 'y':
+        board = get_new_board()
+    elif choice == 'n':
+        play_again = False
+    else:
+        pass
