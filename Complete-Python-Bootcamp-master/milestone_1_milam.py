@@ -7,11 +7,9 @@
 board = [['-']*3 for x in xrange(3)]
 # board
 
-# player one?
-is_player_one = True
 
-# is the game over
-game_over = False
+
+
 
 #%%
 # print the board
@@ -20,15 +18,17 @@ def print_board():
         # print 'board index:', idx
         print row[0]+' '+row[1]+' '+row[2]
 
+    print
+
 # print_board(board)
 
 #%%
 # get player input
-def get_input():
-    print 'Enter an X,Y coordinate "(X,Y)"":'
+def get_marker_pos():
+    print 'Place your marker:'
     return tuple(raw_input())
 
-# print 'your input:', get_input()
+# print 'your input:', get_marker_pos()
 
 #%%
 # place markers on board
@@ -116,17 +116,28 @@ def get_diag():
     ur = [board[x][2-x] for x in xrange(2, -1, -1)]
     return (ur, dr)
 
-#%%
-# trial run
-print_board()
-while not game_over:
-    place_marker(get_input(), is_player_one)
-    print_board()
-    if is_player_one:
-        print "Player Two's turn"
-        is_player_one = False
-    else:
-        print "Player One's turn"
-        is_player_one = True
 
-    game_over = check_state()
+#%%
+# main game routine
+def play_game():
+    print_board()
+
+    # player one?
+    is_player_one = True
+    # is the game over
+    game_over = False
+    while not game_over:
+        place_marker(get_marker_pos(), is_player_one)
+        print_board()
+        if is_player_one:
+            print "Player Two's (O) turn"
+            is_player_one = False
+        else:
+            print "Player One's (X) turn"
+            is_player_one = True
+
+        game_over = check_state()
+
+#%%
+# start game
+play_game()
