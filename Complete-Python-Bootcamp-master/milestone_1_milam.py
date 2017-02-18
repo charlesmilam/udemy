@@ -3,13 +3,10 @@
 # Tic - Tac - Toe
 
 
-
 #%%
 # get a new board
 def get_new_board():
     return [['-']*3 for x in xrange(3)]
-
-
 
 
 #%%
@@ -22,7 +19,6 @@ def print_board():
 
     print
 
-# print_board(board)
 
 #%%
 # get player input
@@ -30,7 +26,6 @@ def get_marker_pos():
     print 'Place your marker:'
     return tuple(raw_input())
 
-# print 'your input:', get_marker_pos()
 
 #%%
 # place markers on board
@@ -45,6 +40,65 @@ def place_marker(pos, player_one):
 
 
 #%%
+# get the winner
+def winner(player):
+    for num in xrange(3):
+        if all(p == player for p in get_row(num)):
+            return True
+        elif all(p == player for p in get_col(num)):
+            return True
+        elif num < 2:
+            if all(p == player for p in get_diag()[num]):
+                return True
+
+
+#%%
+# did X win
+def x_wins():
+    for num in xrange(3):
+        if all(p == 'X' for p in get_row(num)):
+            return True
+        elif all(p == 'X' for p in get_col(num)):
+            return True
+        elif num < 2:
+            if all(p == 'X' for p in get_diag()[num]):
+                return True
+
+#%%
+# did O win
+def o_wins():
+    for num in xrange(3):
+        if all(p == 'O' for p in get_row(num)):
+            return True
+        elif all(p == 'O' for p in get_col(num)):
+            return True
+        elif num < 2:
+            if all(p == 'O' for p in get_diag()[num]):
+                return True
+
+
+#%%
+# new version of check_state
+def check_state_v2():
+    tie_msg = "It's a tie! gg"
+    x_wins_msg = 'X wins!'
+    o_wins_msg = 'O wins!'
+
+    # check for tie
+    if all('-' not in p for p in board):
+        print tie_msg
+        return True
+    # check x win
+    elif winner('X'):
+        print x_wins_msg
+        return True
+    # check o win
+    elif winner('O'):
+        print o_wins_msg
+        return True
+
+
+#%%
 # check the game state
 def check_state():
     tie_msg = "It's a tie! gg"
@@ -55,22 +109,22 @@ def check_state():
         print tie_msg
         return True
     # check horizontal win
-    elif all(p == 'X' for p in board[0]):
+    elif all(p == 'X' for p in get_row(0)):
         print x_wins_msg
         return True
-    elif all(p == 'X' for p in board[1]):
+    elif all(p == 'X' for p in get_row(1)):
         print x_wins_msg
         return True
-    elif all(p == 'X' for p in board[2]):
+    elif all(p == 'X' for p in get_row(2)):
         print x_wins_msg
         return True
-    elif all(p == 'O' for p in board[0]):
+    elif all(p == 'O' for p in get_row(0)):
         print o_wins_msg
         return True
-    elif all(p == 'O' for p in board[1]):
+    elif all(p == 'O' for p in get_row(1)):
         print o_wins_msg
         return True
-    elif all(p == 'O' for p in board[2]):
+    elif all(p == 'O' for p in get_row(2)):
         print o_wins_msg
         return True
     # check vertical win
@@ -108,10 +162,16 @@ def check_state():
 
 
 #%%
+# get a row from the board
+def get_row(row_num):
+    return [board[x][row_num] for x in xrange(3)]
+
+
 # get a column from the board
 def get_col(col_num):
     # print 'get col:', [board[x][col_num] for x in xrange(3)]
     return [board[x][col_num] for x in xrange(3)]
+
 
 # get diagonals
 def get_diag():
@@ -139,7 +199,8 @@ def play_game():
             print "X's turn"
             is_player_one = True
 
-        game_over = check_state()
+        game_over = check_state_v2()
+
 
 #%%
 # play game
