@@ -59,7 +59,7 @@ regr.fit(X, y)
 
 # %%
 # predict results
-pred = regr.predict(6.5)
+pred = sc_y.inverse_transform(regr.predict(sc_X.transform(np.array([[6.5]]))))
 
 # %%
 # visualize the results
