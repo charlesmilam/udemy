@@ -21,9 +21,9 @@ dataset = pd.read_csv('Position_Salaries.csv')
 
 # %%
 # create features matrix
-X = dataset.iloc[:, 1:-1].values
+X = dataset.iloc[:, 1:2].values
 # create dependent variable vector
-y = dataset.iloc[:, -1].values
+y = dataset.iloc[:, 2].values
 
 # %%
 # take care of missing data
