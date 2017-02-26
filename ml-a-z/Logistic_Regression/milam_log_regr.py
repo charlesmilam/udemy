@@ -6,6 +6,7 @@ import matplotlib.pyplot as pyplot
 import pandas as pd
 from sklearn.preprocessing import Imputer, LabelEncoder, OneHotEncoder, StandardScaler
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
 from pprint import pprint
 
 # suppress printing of scientific notation
@@ -45,3 +46,5 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, rand
 sc_X = StandardScaler()
 X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
+
+# fit regression to training set
