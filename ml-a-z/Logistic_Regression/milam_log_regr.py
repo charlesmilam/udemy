@@ -7,6 +7,7 @@ import pandas as pd
 from sklearn.preprocessing import Imputer, LabelEncoder, OneHotEncoder, StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix
 from pprint import pprint
 
 # suppress printing of scientific notation
@@ -54,3 +55,7 @@ cls.fit(X_train, y_train)
 
 # predict test set results
 y_pred = cls.predict(X_test)
+
+# %%
+# confusion_matrix
+cm = confusion_matrix(y_test, y_pred=y_pred)
