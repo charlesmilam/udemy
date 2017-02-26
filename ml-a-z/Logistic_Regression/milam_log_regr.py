@@ -47,4 +47,10 @@ sc_X = StandardScaler()
 X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
 
+#%%
 # fit regression to training set
+cls = LogisticRegression(random_state=0)
+cls.fit(X_train, y_train)
+
+# predict test set results
+y_pred = cls.predict(X_test)
