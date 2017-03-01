@@ -3,7 +3,6 @@
 # import the libraries
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 import seaborn as sns
 import pandas as pd
@@ -60,6 +59,10 @@ y_pred = classifier.predict(X_test)
 #%%
 # make the Confusion Matrix
 cm = confusion_matrix(y_test, y_pred)
+
+#%%
+# check score
+score = classifier.score(X_test, y_test)
 
 #%%
 # visualize the Training set results

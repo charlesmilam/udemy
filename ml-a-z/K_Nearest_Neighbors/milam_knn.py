@@ -1,8 +1,7 @@
-# Classification template
+# K-NN model template
 #%%
 # import the libraries
 import numpy as np
-import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 import seaborn as sns
@@ -20,8 +19,8 @@ np.set_printoptions(suppress=True)
 #%%
 # import the dataset
 dataset = pd.read_csv('Social_Network_Ads.csv')
-X = dataset.iloc[:, [2, -1]].values
-y = dataset.iloc[:, -1].values
+X = dataset.iloc[:, [2, 3]].values
+y = dataset.iloc[:, 4].values
 
 # # %%
 # # take care of missing data
@@ -51,7 +50,9 @@ X_test = sc.transform(X_test)
 # ================ end preprocessing ==========================
 #%%
 # fit classifier to the Training set
-# Create your classifier here
+from sklearn.neighbors import KNeighborsClassifier
+classifier = KNeighborsClassifier()
+classifier.fit(X_train, y_train)
 
 #%%
 # predict the Test set results
@@ -60,6 +61,10 @@ y_pred = classifier.predict(X_test)
 #%%
 # make the Confusion Matrix
 cm = confusion_matrix(y_test, y_pred)
+
+#%%
+# check score
+score = classifier.score(X_test, y_test)
 
 #%%
 # visualize the Training set results
