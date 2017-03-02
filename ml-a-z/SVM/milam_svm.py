@@ -19,8 +19,8 @@ np.set_printoptions(suppress=True)
 #%%
 # import the dataset
 dataset = pd.read_csv('Social_Network_Ads.csv')
-X = dataset.iloc[:, [2, -1]].values
-y = dataset.iloc[:, -1].values
+X = dataset.iloc[:, [2, 3]].values
+y = dataset.iloc[:, 4].values
 
 # # %%
 # # take care of missing data
@@ -50,7 +50,9 @@ X_test = sc.transform(X_test)
 # ================ end preprocessing ==========================
 #%%
 # fit classifier to the Training set
-# Create your classifier here
+from sklearn.svm import SVC
+classifier = SVC(kernel='linear', random_state=0)
+classifier.fit(X_train, y_train)
 
 #%%
 # predict the Test set results
