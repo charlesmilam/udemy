@@ -1,0 +1,9 @@
+.DS_Store
+.RHistory
+.ipynb_checkpoints
+.Rhistory
+*.pyc
+scratch.ipynb
+old/
+presentations/
+videos/
