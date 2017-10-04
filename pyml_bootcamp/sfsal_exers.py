@@ -77,7 +77,7 @@ print(sal_df[['title_len', 'TotalPayBenefits']].corr())
 print()
 # apply correlation to entire dataframe and plot it
 # f, ax = plt.subplots(figsize=(10, 8))
-sal_corr = sal_df[['BasePay', 'OvertimePay', 'OtherPay', 'Benefits', 'TotalPay', 'TotalPayBenefits', 'Year', 'has_chief', 'title_len']].corr()
+sal_corr = sal_df[['BasePay', 'OvertimePay', 'OtherPay', 'Benefits', 'TotalPay', 'TotalPayBenefits', 'has_chief', 'title_len']].corr()
 sal_corr_heat = sns.heatmap(sal_corr, mask=np.zeros_like(sal_corr, dtype=np.bool), cmap=sns.diverging_palette(220, 10, as_cmap=True), square=True)
 plt.show()
 print()
