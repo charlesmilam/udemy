@@ -18,6 +18,9 @@ print()
 print('ecom_df size:')
 print(ecom_df.size)
 print()
+# solution answer
+print('ecom_df info:\n{}'.format(ecom_df.info()))
+print()
 
 # average purchase price
 msg = 'average purchase price: {:.2f}'.format(ecom_df['Purchase Price'].mean())
@@ -49,6 +52,7 @@ print(ecom_df['AM or PM'].value_counts())
 print()
 
 # top 5 common job titles
+# solution  uses .value_counts().head() much cleaner
 print('top 5 common job titles:')
 print(ecom_df.groupby('Job')['Job'].count().sort_values(ascending=False).head())
 print()
@@ -70,6 +74,10 @@ amex_count = (ecom_df[ecom_df['CC Provider'] == 'American Express']['Purchase Pr
 msg = 'num of amex users, purchase > $95: {}'.format(amex_count)
 print(msg)
 print()
+# solution
+amex_count = ecom_df[(ecom_df['CC Provider'] == 'American Express') & (ecom_df['Purchase Price'] > 95)].count()
+print('amex solution:\n{}'.format(amex_count))
+print()
 
 # number of users with cc expire in 2025
 num_exp_2025 = [x[3:] == '25' for x in ecom_df['CC Exp Date']].count(True)
@@ -78,4 +86,4 @@ print()
 
 # top 5 email providers
 ecom_df['email_domain'] = ecom_df['Email'].apply(lambda x: x.split('@')[1])
-print('top 5 email domains:\n{}'.format(ecom_df['email_domain'].value_counts().head()))
+print('top 5 email domains:\n{}'.format(ecom_df['Email'].apply(lambda x: x.split('@')[1]).value_counts().head()))
