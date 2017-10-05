@@ -52,3 +52,30 @@ print()
 print('top 5 common job titles:')
 print(ecom_df.groupby('Job')['Job'].count().sort_values(ascending=False).head())
 print()
+
+# purchase price for given lot number
+msg = 'purchase price for lot: {}: '.format(ecom_df[ecom_df['Lot'] == '90 WT']['Purchase Price'])
+print(msg)
+print()
+
+# email for given cc number
+cc_num = 4926535242672853
+cc_email = ecom_df[ecom_df['Credit Card'] == cc_num]['Email']
+msg = 'email for cc num {}: {}'.format(cc_num, cc_email)
+print(msg)
+print()
+
+# number amex users with purchase > $95
+amex_count = (ecom_df[ecom_df['CC Provider'] == 'American Express']['Purchase Price'] > 95).count()
+msg = 'num of amex users, purchase > $95: {}'.format(amex_count)
+print(msg)
+print()
+
+# number of users with cc expire in 2025
+num_exp_2025 = [x[3:] == '25' for x in ecom_df['CC Exp Date']].count(True)
+print('num of users with cc exp in 2025: {}'.format(num_exp_2025))
+print()
+
+# top 5 email providers
+ecom_df['email_domain'] = ecom_df['Email'].apply(lambda x: x.split('@')[1])
+print('top 5 email domains:\n{}'.format(ecom_df['email_domain'].value_counts().head()))
